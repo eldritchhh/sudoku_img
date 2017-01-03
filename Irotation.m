@@ -1,23 +1,28 @@
 %sarebbe da trovare la bounding box orientata
-function out = Irotation(im, temp)
+function out = Irotation(im)
 
     % (0,0)-----------A
     %   |
     %   |
     %   B
-    catetoA = 1;
-    catetoB = 1;
+    A = [1, 1, 1, 1, 1, 1];
+    B = [1, 1, 1, 1, 1, 1];
 
-    while im(temp, catetoA) ~= 1
-        catetoA = catetoA + 1;
+    for k = 1 : size(A, 2)
+        while im(k + 5, A) ~= 1
+            A(k) = A(k) + 1;
+        end
+
+        while im(B, k + 5) ~= 1
+            B(k) = B(k) + 1;
+        end
     end
+    catetoA = mean(A)
+    catetoB = mean(B)
+%    cateto = min(catetoA, catetoB);
 
-    while im(catetoB, temp) ~= 1
-        catetoB = catetoB + 1;
-    end
-
-    ipotenusa = (catetoA^2 + catetoB^2)^(1/2);
-    catetoMaggiore = max(catetoA, catetoB);
+    ipotenusa = (catetoA^2 + catetoB^2)^(1/2)
+    catetoMaggiore = max(catetoA, catetoB)
     costeta =  catetoMaggiore / ipotenusa;
     alpha = rad2deg(acos(costeta));
 
@@ -26,4 +31,5 @@ function out = Irotation(im, temp)
     else
         out = alpha;
     end
+    out
 end
