@@ -1,5 +1,6 @@
 %sarebbe da trovare la bounding box orientata
 function out = Irotation(im)
+%lollo infame
 
     % (0,0)-----------A
     %   |
